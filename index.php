@@ -1,49 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<?php
+if (isset($_POST['btn1'])) {
+    header('location: signup.php');
+}
+if (isset($_POST['btn'])) {
+    require_once './processLogin.php';
+}
+?>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet" type="text/css"/>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-      <div class="col-md-12">
-          <form class="form-inline">
-              <div class="form-group">
-                  <label for="firstName">First Name</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="First Name"/>
-              </div>
-              <div class="form-group">
-                  <label for="middleName">Middle Name</label>
-                  <input type="text" class="form-control" id="middleName" placeholder="Middle Name"/>
-              </div>
-              <div class="form-group">
-                  <label for="Surname">Last Name</label>
-                  <input type="text" class="form-control" id="surname" placeholder="Surname"/>
-              </div>
-              <div class="form-group">
-                  <label for="phoneNumber">Phone Number</label>
-                  <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number"/>
-              </div>
-              <button class="btn btn-default">Submit</button>
-          </form>
-      </div>
-    
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.js"></script>
-  </body>
+    </head>
+    <body >
+        <div  class="wrapper col-md-8 col-md-offset-4">
+            <div class="col-md-6">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="username">User Name</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="User Name" onblur="CheckEmpty('username')"/>
+                    </div> 
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" onblur="CheckEmpty('password')"/>
+                    </div> 
+                    <button class="btn btn-default" name="btn">Sign In</button>
+                    <button class="btn btn-default" name="btn1">Sign Up</button>
+                </form>  
+            </div>
+        </div>
+        <script src="js/validation.js"></script>
+    </body>
 </html>

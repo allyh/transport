@@ -60,7 +60,7 @@ and open the template in the editor.
                             <td><?php echo $data['email'] ?></td>
                             <td><?php echo $data['phoneNumber'] ?></td>
                             <td><?php echo $data['adress'] ?></td>
-                            <td> <a href="item.php?customerId=<?php echo $data['customerId']; ?>">Add item</a> | <a href="">Dispatch</a></td>
+                            <td> <a href="item.php?customerId=<?php echo $data['customerId']; ?>">Add item</a> | <a href="dispatch.php?customerId=<?php echo $data['customerId'];?>">Dispatch</a></td>
                         </tr>
                     <?php } ?>
 

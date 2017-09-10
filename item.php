@@ -6,7 +6,6 @@ $query = "select `categoryName`, `categoryId` from category";
 $result = mysqli_query($link, $query);
 $newCustomerId = $_SESSION['newCustomerId'];
 @$customerId = mysqli_real_escape_string($link, $_GET['customerId']);
-echo $customerId;
 if(isset($customerId) && $customerId <>""){
 $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
         . "from customer "

@@ -1,6 +1,8 @@
 <?php
+// if power is equal to 1, do not check login again in signup.php file 
+if($_SESSION['power'] != 1){
 require_once './checkLogin.php';
-require_once './processCustomer.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

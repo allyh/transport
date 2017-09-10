@@ -14,7 +14,6 @@ $outPut = mysqli_fetch_array($resultPower);
         <?php
         if ($outPut['power'] == 2)
             echo ' <li class="list-group-item"><a href="customer.php">Add Customer</a></li>
-        <li class="list-group-item"><a href="item.php">Add Item</a> </li>
         <li class="list-group-item"><a href="category.php">Add Item Category</a></li>
         <li class="list-group-item"><a href="dispatch.php">Dispatch Item</a></li>';
         ?>

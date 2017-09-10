@@ -33,7 +33,7 @@ and open the template in the editor.
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" id="surname" placeholder="Email"/>
+                        <input type="email" class="form-control" name="email" id="surname" placeholder="Email"/>
                     </div>
 
                     <div class="form-group">
@@ -49,6 +49,7 @@ and open the template in the editor.
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Address</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +60,7 @@ and open the template in the editor.
                             <td><?php echo $data['email'] ?></td>
                             <td><?php echo $data['phoneNumber'] ?></td>
                             <td><?php echo $data['adress'] ?></td>
+                            <td> <a href="item.php?customerId=<?php echo $data['customerId']; ?>">Add item</a> | <a href="">Dispatch</a></td>
                         </tr>
                     <?php } ?>
 

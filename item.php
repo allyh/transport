@@ -5,10 +5,20 @@ require_once './connection/connect.php';
 $query = "select `categoryName`, `categoryId` from category";
 $result = mysqli_query($link, $query);
 $newCustomerId = $_SESSION['newCustomerId'];
-// Query the detail of a new customer using the $newCustomerId set in the session
+@$customerId = mysqli_real_escape_string($link, $_GET['customerId']);
+echo $customerId;
+if(isset($customerId) && $customerId <>""){
 $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
         . "from customer "
-        . "where `customerId` = $newCustomerId;";
+. "where `customerId` = $customerId;";
+
+}
+else{
+    // Query the detail of a new customer using the $newCustomerId set in the session
+   $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
+        . "from customer "
+. "where `customerId` = $newCustomerId;"; 
+}
 $result2 = mysqli_query($link, $queryNewCustomerInfo);
 $data1 = mysqli_fetch_array($result2);
 // assumption userId = loginName , pick the login name from the session

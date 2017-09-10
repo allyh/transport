@@ -10,10 +10,12 @@ $password = md5($password);
 $query = "select * from register where username = '$username' and password = '$password';";
 $result = mysqli_query($link, $query);
 $numberOfRows = mysqli_num_rows($result); // check number of rows returned by the select statement above 
+$data2 = mysqli_fetch_array($result);
+$power = $data2['power'];
 if ($numberOfRows === 1) {
     session_start();
     $_SESSION['loginName'] = $username;
-    require_once './privilege.php';
+    $_SESSION['power'] = $power;
     if ($power == 1) {
         header('location: signup.php');
     } else {

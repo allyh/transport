@@ -1,7 +1,32 @@
 <?php
 // if power is equal to 1, do not check login again in signup.php file 
-if($_SESSION['power'] != 1){
 require_once './checkLogin.php';
+require_once './connection/connect.php';
+require_once './connection/connect.php';
+$db_selected = mysqli_select_db($link, 'transport_db');
+if (!$db_selected) {
+    die();
+}
+if (isset($_POST['btn'])) {
+    $firstname = $_POST['firstname'];
+    $middlename = $_POST['middlename'];
+    $surname = $_POST['surname'];
+    $phonenumber = $_POST['phonenumber'];
+    $usernme = $_POST['username'];
+    $privilege = $_POST['privilege'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+    $password = md5($password);
+    $cpassword = md5($cpassword);
+    if ($cpassword === $password) {
+        $sql = "INSERT INTO `transport_db`.`register` (`Id`, `firstname`, `middlename`, `surname`, `phonenumber`, `username`, `password`, `regdate`, `power`) "
+                . "VALUES (NULL, '$firstname', '$middlename', '$surname', '$phonenumber', '$usernme', '$password', CURRENT_TIMESTAMP, '$privilege');";
+        if (!mysqli_query($link, $sql)) {
+            die();
+        }
+    } else {
+        $message = 'Passwords do not match';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -26,8 +51,11 @@ require_once './checkLogin.php';
 
     </head>
     <body>
+<?php include_once './includes/navBar.php'; ?>
         <div class="wrapper col-md-8 col-md-offset-2">
+        <?php include_once './includes/sideBar.php'; ?>
             <div class="col-md-8">
+            <?php if (isset($message)) echo '<p style="color:red;">'.$message.'</p>'; ?>
                 <form  method="POST">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
@@ -65,7 +93,7 @@ require_once './checkLogin.php';
                         <label for="cpassword">Comfirm Password </label>
                         <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Comfirm Password"/>
                     </div>
-                    <button class="btn btn-default" name="btn">Submit</button>
+                    <button class="btn btn-primary" name="btn">Submit</button>
                 </form>
             </div>
 
@@ -78,28 +106,7 @@ require_once './checkLogin.php';
     </body>
 </html>
 <?php
-require_once './connection/connect.php';
-$db_selected = mysqli_select_db($link, 'transport_db');
-if (!$db_selected) {
-    die();
-}
-if (isset($_POST['btn'])) {
-    $firstname = $_POST['firstname'];
-    $middlename = $_POST['middlename'];
-    $surname = $_POST['surname'];
-    $phonenumber = $_POST['phonenumber'];
-    $usernme = $_POST['username'];
-    $privilege = $_POST['privilege'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-    $password = md5($password);
-    $cpassword = md5($cpassword);
-    $sql = "INSERT INTO `transport_db`.`register` (`Id`, `firstname`, `middlename`, `surname`, `phonenumber`, `username`, `password`, `regdate`, `privilege`) "
-            . "VALUES (NULL, '$firstname', '$middlename', '$surname', '$phonenumber', '$usernme', '$password', CURRENT_TIMESTAMP, '$privilege');";
-    if (!mysqli_query($link, $sql)) {
-        die();
-    }
-}
+
 
         
  

@@ -30,7 +30,7 @@ and open the template in the editor.
                         <input type="text" class="form-control" name="categoryDescription" id="itemDescription" placeholder="Category Description"/>
                     </div> 
 
-                    <button class="btn btn-default" name="cbtn">Submit</button>
+                    <button class="btn btn-primary" name="cbtn">Submit</button>
                 </form>  
             </div>
         </div>

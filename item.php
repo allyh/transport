@@ -10,6 +10,7 @@ if(isset($customerId) && $customerId <>""){
 $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
         . "from customer "
 . "where `customerId` = $customerId;";
+$newCustomerId = $customerId;
 
 }
 else{

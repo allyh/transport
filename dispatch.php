@@ -56,6 +56,7 @@ and open the template in the editor.
                     <tr><th>Item Name</th>
                         <th>Description</th>
                         <th>Quantity</th>
+                        <th>Location</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -66,7 +67,7 @@ and open the template in the editor.
                             <td><?php echo $data['itemName'] ?></td>
                             <td><?php echo $data['itemDescription'] ?></td>
                             <td><?php echo $data['quantity'] ?></td>
-                            
+                            <td><?php echo $data['location'] ?></td>
                             <td> <a class="btn-click <?php if($data['status']==1) echo 'hideAnchor';?>" href="processDispatch.php?userId=<?php echo $_SESSION['loginName']; ?>&customerId=<?php echo $customerId ?>&itemId=<?php echo $data['itemNumber'] ?>">Dispatch</a></td>
                         </tr>
                     <?php } ?>

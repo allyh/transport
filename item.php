@@ -6,18 +6,16 @@ $query = "select `categoryName`, `categoryId` from category";
 $result = mysqli_query($link, $query);
 $newCustomerId = $_SESSION['newCustomerId'];
 @$customerId = mysqli_real_escape_string($link, $_GET['customerId']);
-if(isset($customerId) && $customerId <>""){
-$queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
-        . "from customer "
-. "where `customerId` = $customerId;";
-$newCustomerId = $customerId;
-
-}
-else{
+if (isset($customerId) && $customerId <> "") {
+    $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
+            . "from customer "
+            . "where `customerId` = $customerId;";
+    $newCustomerId = $customerId;
+} else {
     // Query the detail of a new customer using the $newCustomerId set in the session
-   $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
-        . "from customer "
-. "where `customerId` = $newCustomerId;"; 
+    $queryNewCustomerInfo = "select `customerId`, `fullName`, `phoneNumber`, email, adress "
+            . "from customer "
+            . "where `customerId` = $newCustomerId;";
 }
 $result2 = mysqli_query($link, $queryNewCustomerInfo);
 $data1 = mysqli_fetch_array($result2);
@@ -73,7 +71,15 @@ and open the template in the editor.
                         <label for="itemDescription">Item Quantity</label>
                         <input type="number" name="quantty" class="form-control"/>
                     </div> 
-
+                    <div class="form-group">
+                        <label for="itemDescription">Item Location</label>
+                        <select class="form-control" name="location">
+                            <option value="Store A">Store A</option>
+                            <option value="Store B">Store B</option>
+                            <option value="Store C">Store C</option>
+                            <option value="Store D">Store D</option>
+                        </select>
+                    </div> 
                     <button class="btn btn-default" name="ibtn">Add item</button>
                     <button class="btn btn-default" name="done">Done</button>
                 </form>  
@@ -94,15 +100,16 @@ if (isset($_POST['ibtn'])) {
     $itemName = mysqli_real_escape_string($link, $_POST['itemName']);
     $itemDescriprion = mysqli_real_escape_string($link, $_POST['itemDescription']);
     $itemQuantity = mysqli_real_escape_string($link, $_POST['quantty']);
+    $itemLocation = mysqli_real_escape_string($link, $_POST['location']);
 //    print_r($_POST);
 //    exit();
-    $sql = "INSERT INTO `transport_db`.`item` (`itemNumber`, `userId`, `categoryId`, `itemName`, `itemDescription`, `receivedOn`, `customerId`, `quantity`) "
-            . "VALUES (NULL, '$userId', '$categoryId', '$itemName', '$itemDescriprion', CURRENT_TIMESTAMP, '$newCustomerId', '$itemQuantity');";
+    $sql = "INSERT INTO `transport_db`.`item` (`itemNumber`, `userId`, `categoryId`, `itemName`, `itemDescription`, `receivedOn`, `customerId`, `quantity`,`location`) "
+            . "VALUES (NULL, '$userId', '$categoryId', '$itemName', '$itemDescriprion', CURRENT_TIMESTAMP, '$newCustomerId', '$itemQuantity','$itemLocation');";
     if (mysqli_query($link, $sql)) {
         $message = "item added successfully, add another one";
         echo $message;
     }
 }
-if(isset($_POST['done'])){
+if (isset($_POST['done'])) {
     header('location: customer.php');
 }
